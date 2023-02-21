@@ -13,17 +13,35 @@
                     </div>
                     <form action="{{ route('registerUser') }}" method="POST">
                         @csrf
+                        @if (Session::has('success'))
+                            <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @endif
+                        @if (Session::has('fail'))
+                            <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                        @endif
                         <div class="form-login">
                             <label>Full Name</label>
                             <div class="form-addons">
-                                <input type="text" name="name" placeholder="Enter your full name">
+                                <input type="text" name="name" value="{{ old('name') }}"
+                                    placeholder="Enter your full name">
+                                <span class="text-danger">
+                                    @error('name')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                                 <img src="{{ 'admin/assets/img/icons/users1.svg' }}" alt="img">
                             </div>
                         </div>
                         <div class="form-login">
                             <label>Email</label>
                             <div class="form-addons">
-                                <input type="text" name="email" placeholder="Enter your email address">
+                                <input type="text" name="email" value="{{ old('email') }}"
+                                    placeholder="Enter your email address">
+                                <span class="text-danger">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                                 <img src="{{ 'admin/assets/img/icons/mail.svg' }}" alt="img">
                             </div>
                         </div>
@@ -31,6 +49,11 @@
                             <label>Password</label>
                             <div class="pass-group">
                                 <input type="password" name="password" class="pass-input" placeholder="Enter your password">
+                                <span class="text-danger">
+                                    @error('password')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                                 <span class="fas toggle-password fa-eye-slash"></span>
                             </div>
                         </div>

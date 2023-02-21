@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,15 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-Route::get('/login',[AuthController::class ,'Login']);
-Route::get('/registration',[AuthController::class ,'Registion']);
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+
+Route::get('/',[DashboardController::class,'dashboard'])->name('dashboard')->Middleware('isLoggedIn');
+
+
+Route::get('/login',[AuthController::class ,'Login'])->name('login')->middleware('alreadyLoggedIn');
+Route::post('/login-user',[AuthController::class ,'LoginUser'])->name('LoginUser');
+Route::get('/registration',[AuthController::class ,'Registion'])->middleware('alreadyLoggedIn');
 Route::post('/registr/user',[AuthController::class ,'userRegister'])->name('registerUser');
+Route::get('/logout',[DashboardController::class ,'Logout'])->name('logout');
