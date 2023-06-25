@@ -12,19 +12,23 @@
     <title>Dreams Pos admin template</title>
     {{-- {{ 'admin/' }} --}}
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ 'admin/assets/img/favicon.png' }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/assets/img/favicon.png') }}">
 
-    <link rel="stylesheet" href="{{ 'admin/assets/css/bootstrap.min.css' }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
 
-    <link rel="stylesheet" href="{{ 'admin/assets/css/animate.css' }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{ 'admin/assets/css/dataTables.bootstrap4.min.css' }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/dataTables.bootstrap4.min.css') }}">
 
-    <link rel="stylesheet" href="{{ 'admin/assets/plugins/fontawesome/css/fontawesome.min.css' }}">
-    <link rel="stylesheet" href="{{ 'admin/assets/plugins/fontawesome/css/all.min.css' }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/fontawesome/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/fontawesome/css/all.min.css') }}">
 
-    <link rel="stylesheet" href="{{ 'admin/assets/css/style.css' }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
+    <!-- toaster CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
+{{-- asset() --}}
 
 <body>
     <div id="global-loader">
@@ -46,21 +50,55 @@
     </div>
 
 
-    <script src="{{ 'admin/assets/js/jquery-3.6.0.min.js' }}"></script>
+    <script src="{{ asset('admin/assets/js/jquery-3.6.0.min.js') }}"></script>
 
-    <script src="{{ 'admin/assets/js/feather.min.js' }}"></script>
+    <script src="{{ asset('admin/assets/js/feather.min.js') }}"></script>
 
-    <script src="{{ 'admin/assets/js/jquery.slimscroll.min.js' }}"></script>
+    <script src="{{ asset('admin/assets/js/jquery.slimscroll.min.js') }}"></script>
 
-    <script src="{{ 'admin/assets/js/jquery.dataTables.min.js' }}"></script>
-    <script src="{{ 'admin/assets/js/dataTables.bootstrap4.min.js' }}"></script>
+    <script src="{{ asset('admin/assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/dataTables.bootstrap4.min.js') }}"></script>
 
-    <script src="{{ 'admin/assets/js/bootstrap.bundle.min.js' }}"></script>
+    <script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/apexchart/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/apexchart/chart-data.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/select2/js/select2.min.js') }}"></script>
 
-    <script src="{{ 'admin/assets/plugins/apexchart/apexcharts.min.js' }}"></script>
-    <script src="{{ 'admin/assets/plugins/apexchart/chart-data.js' }}"></script>
+    <script src="{{ asset('admin/assets/js/script.js') }}"></script>
+    <!-- toaster  JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {{-- bootbox  --}}
+    <script type="text/javascript" src="{{ asset('admin/assets/bootbox/bootbox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/bootbox/bootbox.locales.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/costome.js') }}"></script>
+    @yield('script')
 
-    <script src="{{ 'admin/assets/js/script.js' }}"></script>
+
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
 </body>
 
 </html>

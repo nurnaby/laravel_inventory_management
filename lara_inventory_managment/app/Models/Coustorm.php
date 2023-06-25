@@ -5,16 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Coustorm extends Model
 {
-
     use HasFactory;
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'photo',
-        'phone',
-        'address',
+        'coustomer_name','email','addres','phone','shope_name','photo','account_helder','account_number','bank_branch','city'
     ];
 }

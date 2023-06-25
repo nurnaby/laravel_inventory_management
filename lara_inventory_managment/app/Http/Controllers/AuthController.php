@@ -19,6 +19,7 @@ class AuthController extends Controller
       $request->validate([
         'name'=>'required',
         'email'=>'required|email|unique:users',
+        // 'password'=>'required',
         'password'=>'required|min:5|max:12',
       ]);
       $users= new User();
@@ -49,7 +50,7 @@ class AuthController extends Controller
     public function LoginUser(Request $request){
         $request->validate([
             'email'=>'required',
-            'password'=>'required|min:5|max:12',
+            'password'=>'required|min:5|max:15',
           ]);
 
         $user = User::where('email','=',$request->email)->first();

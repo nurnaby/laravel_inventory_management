@@ -12,10 +12,10 @@ class DashboardController extends Controller
         $data= array();
         if(Session::has('loginId')){
             $userId = session()->get('loginId');
-            $data = User::where('id','=',$userId)->first();
+            $data['user'] = User::where('id','=',$userId)->first();
         }
         // dd($data);
-        return view('dashboard',compact('data'));
+        return view('dashboard',$data);
     }
     public function Logout(){
         if(Session::has('loginId')){
