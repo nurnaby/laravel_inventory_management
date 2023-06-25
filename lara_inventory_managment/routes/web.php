@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgamiController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoustomerController;
 use App\Http\Controllers\DashboardController;
 
@@ -51,6 +52,15 @@ Route::middleware('isLoggedIn')->group(function () {
         Route::get('/edit-customer/{id}','EditCustomer')->name('edit.customer');
         Route::post('/update-employe','UpdateEmploye')->name('update.Employe');
     });
+    // Category all route
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/category','AllCategory')->name('all.Category');
+        Route::get('/category-add','AddCategory')->name('add.category');
+        Route::post('/category-store','StoreCategory')->name('store.category');
+        Route::get('/edit-category/{id}','EditCategory')->name('edit.category');
+        Route::post('/update-category','UpdateCategory')->name('update.category');
+    });
+    
 // Agami all route
     Route::controller(AgamiController::class)->group(function(){
         Route::get('/agami','AllAgamiProduct')->name('all.agami_product');

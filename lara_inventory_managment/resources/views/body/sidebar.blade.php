@@ -17,6 +17,15 @@
 
                     </ul>
                 </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="{{ asset('admin/assets/img/icons/users1.svg') }}"
+                            alt="img"><span>
+                            Category</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{{ route('all.Category') }}">Category List</a></li>
+
+                    </ul>
+                </li>
                 <li class="{{ 'customer' == request()->path() ? 'active' : '' }}">
                     <a href="{{ route('all.customer') }}"><img src="{{ asset('admin/assets/img/icons/users1.svg') }}"
                             alt="img"><span>
